@@ -1,12 +1,13 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { markRaw } from 'vue';
+import { onAuthStateChanged } from 'firebase/auth';
 
 import App from './App.vue';
 import router from './router';
 
 import VeeValidatePlugin from './includes/validation.js';
-import './includes/firebase.js';
+import { auth } from './includes/firebase.js';
 
 import './assets/base.css';
 import './assets/main.css';
@@ -17,8 +18,16 @@ pinia.use(({ store }) => {
     store.router = markRaw(router)
 })
 
-createApp(App)
-    .use(pinia)
-    .use(router)
-    .use(VeeValidatePlugin)
-    .mount('#app');
+let app
+
+onAuthStateChanged(auth, () => {
+    if (!app) {
+        app = createApp(App)
+            .use(pinia)
+            .use(router)
+            .use(VeeValidatePlugin)
+            .mount('#app');
+    }
+})
+
+

@@ -54,6 +54,28 @@
         <ErrorMessage name="confirmPassword" class="text-red-600" />
       </div>
 
+      <div class="mb-3">
+        <label class="inline-block mb-2">Name</label>
+        <vee-field
+            name="name"
+            type="name"
+            class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+            placeholder="Enter your name"
+        />
+        <ErrorMessage name="name" class="text-red-600" />
+      </div>
+
+      <div class="mb-3">
+        <label class="inline-block mb-2">Age</label>
+        <vee-field
+            name="age"
+            type="number"
+            class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+            placeholder="Enter your age"
+        />
+        <ErrorMessage name="age" class="text-red-600" />
+      </div>
+
       <div class="mb-3 pl-6">
         <vee-field
             value="1"
@@ -102,6 +124,8 @@ export default {
       email: 'required|email',
       password: 'required',
       confirmPassword: 'confirmed:@password',
+      name: 'required|alphaSpaces',
+      age: 'required|min_value:10|max_value:100',
       tos: 'tos'
     })
 

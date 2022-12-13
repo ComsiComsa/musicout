@@ -28,7 +28,29 @@
 
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
-              <router-link to="/main" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Main</router-link>
+              <router-link
+                  to="/main"
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  :class="{ 'bg-gray-900 text-white' : $route.path === '/main'}"
+              >
+                Main
+              </router-link>
+
+              <router-link
+                  to="/manage"
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  :class="{ 'bg-gray-900 text-white' : $route.path === '/manage'}"
+              >
+                Manage
+              </router-link>
+
+              <router-link
+                  to="/profile"
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  :class="{ 'bg-gray-900 text-white' : $route.path === '/profile'}"
+              >
+                Profile
+              </router-link>
             </div>
           </div>
         </div>
@@ -75,13 +97,21 @@
         :class="{ 'hidden': !mobileMenuVisible }"
     >
       <div class="space-y-1 px-2 pt-2 pb-3">
-        <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a>
+        <router-link
+            to="/main"
+            class="hover:bg-gray-700 hover:text-white text-gray-300 block px-3 py-2 rounded-md text-base font-medium"
+            :class="{ 'bg-gray-900 text-white hover:bg-gray-900 hover:text-orange-600' : $route.path === '/main'}"
+        >
+          Main
+        </router-link>
 
-        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
-
-        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-
-        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
+        <router-link
+            to="/manage"
+            class="hover:bg-gray-700 hover:text-white text-gray-300 block px-3 py-2 rounded-md text-base font-medium"
+            :class="{ 'bg-gray-900 text-white hover:bg-gray-900 hover:text-orange-600' : $route.path === '/manage'}"
+        >
+          Manage
+        </router-link>
       </div>
     </div>
   </nav>

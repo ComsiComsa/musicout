@@ -16,6 +16,16 @@ const router = createRouter({
           path: 'main',
           name: 'main',
           component: () => import('@/views/Main.vue')
+        },
+        {
+          path: 'manage',
+          name: 'manage',
+          component: () => import('@/views/Manage.vue')
+        },
+        {
+          path: 'profile',
+          name: 'profile',
+          component: () => import('@/views/Profile.vue')
         }
       ]
     },
@@ -49,7 +59,8 @@ router.beforeEach(async (to, from) => {
   }
 
   if (userStore.user.uid && !to.meta.requiredAuth) {
-    return false
+    console.log('AA AA AA')
+    return { name: 'main' }
   }
 
   return true

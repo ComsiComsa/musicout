@@ -1,6 +1,10 @@
 import { defineStore } from 'pinia';
-import { auth } from '@/includes/firebase.js';
+import { auth, db } from '@/includes/firebase.js';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { useRouter } from 'vue-router';
+
+let usersDocument
 
 export const useUserStore = defineStore('user', {
     state: () => {
@@ -11,10 +15,13 @@ export const useUserStore = defineStore('user', {
 
     actions: {
         init() {
+            const router = useRouter()
+
             onAuthStateChanged(auth, (user) => {
+                console.log('Router: ', router.currentRoute)
+
                 if (user) {
                     this.user = user
-                    this.router.push({ name: 'main' })
                 } else {
                     this.user = { }
                     this.router.replace({ name: 'login' })
@@ -22,17 +29,56 @@ export const useUserStore = defineStore('user', {
             })
         },
 
-        async register({ email, password }) {
-            return await createUserWithEmailAndPassword(auth, email, password)
+        async getUser() {
+            const userRef = doc(db, 'users', this.user.uid)
+            const userSnapshot = await getDoc(userRef)
+
+            if (userSnapshot.exists()) {
+                return {
+                    ...userSnapshot.data(),
+                    email: this.user.email
+                }
+            } else {
+                return {
+                    name: '',
+                    age: '',
+                    email: this.user.email
+                }
+            }
+        },
+
+        async updateUser(user) {
+            usersDocument = doc(db, 'users', this.user.uid)
+
+            delete user.email
+            await setDoc(usersDocument, {
+                ...user,
+                updated: new Date().getTime()
+            })
+        },
+
+        async register({ email, password, name, age }) {
+            await createUserWithEmailAndPassword(auth, email, password)
                 .then((response) => {
                     this.user = response.user
                 })
+
+            if (this.user) {
+                usersDocument = doc(db, 'users', this.user.uid)
+
+                await setDoc(usersDocument, {
+                    name: name,
+                    age: age,
+                    updated: new Date().getTime()
+                })
+            }
         },
 
-        login({ email, password }) {
-            signInWithEmailAndPassword(auth, email, password)
+        async login({ email, password }) {
+            return await signInWithEmailAndPassword(auth, email, password)
                 .then((response) => {
                     this.user = response.user
+                    this.router.push({ path: '/main' })
                 })
         },
 

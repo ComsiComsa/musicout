@@ -11,6 +11,7 @@
     "test:e2e:dev": "start-server-and-test 'vite dev --port 4173' :4173 'cypress open --e2e'"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "@vee-validate/rules": "^4.7.3",
     "firebase": "^9.15.0",
     "pinia": "^2.0.28",

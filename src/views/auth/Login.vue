@@ -13,6 +13,13 @@
         :validation-schema="validationSchema"
         @submit="onSubmit"
     >
+      <div
+          v-if="loginAlert.visible"
+          class="bg-red-400 text-white text-center fond-bold p-4 rounded mb-4"
+      >
+        {{ loginAlert.message }}
+      </div>
+
       <div class="mb-3">
         <label class="inline-block mb-2">Email</label>
         <vee-field
@@ -40,7 +47,7 @@
           class="block w-full bg-purple-600 text-white mt-6 py-1.5 px-3 rounded transition hover:bg-purple-700"
           :disabled="submitting"
       >
-        Login
+        <i class="fas fa-spinner fa-spin" v-if="submitting" /> Login
       </button>
     </vee-form>
   </div>
@@ -59,7 +66,10 @@ export default {
 
     const userStore = useUserStore()
     const submitting = ref(false)
-
+    const loginAlert = ref({
+      visible: false,
+      message: ''
+    })
     const validationSchema = ref({
       email: 'required|email',
       password: 'required',
@@ -71,12 +81,32 @@ export default {
 
     const onSubmit = (form) => {
       submitting.value = true
+      loginAlert.value.visible = false
 
       userStore.login(form)
+          .catch((error) => {
+            switch (error.message) {
+              case 'Firebase: Error (auth/user-not-found).':
+                loginAlert.value.message = 'User doesnt exist'
+                break
+              case 'Firebase: Error (auth/wrong-password).':
+                loginAlert.value.message = 'Wrong password'
+                break
+              default:
+                loginAlert.value.message = 'Unexpected error. Try again later'
+                break
+            }
+
+            loginAlert.value.visible = true
+          })
+          .finally(() => {
+            submitting.value = false
+          })
     }
 
     return {
       submitting,
+      loginAlert,
       validationSchema,
       onSubmit
     }
