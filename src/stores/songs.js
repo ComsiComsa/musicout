@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia';
 import { onAuthStateChanged } from 'firebase/auth';
 import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage';
-import { storage, auth, db } from '@/includes/firebase.js';
-import { collection, query, onSnapshot, addDoc, where, setDoc, doc, deleteDoc } from 'firebase/firestore';
+import { storage, auth, db } from '@/includes/firebase';
+import { useCommentStore } from '@/stores/comments';
+import { collection, query, onSnapshot, addDoc, getDoc, orderBy, setDoc, doc, deleteDoc, updateDoc } from 'firebase/firestore';
 
 let getSongsSnapshot = null
 
@@ -11,6 +12,12 @@ export const useSongStore = defineStore('songs', {
         return {
             songs: [],
             uploads: []
+        }
+    },
+
+    getters: {
+        getUserSongs: (state) => {
+            return state.songs.filter(song => song.author === auth.currentUser.uid)
         }
     },
 
@@ -27,7 +34,7 @@ export const useSongStore = defineStore('songs', {
 
         async getSongs() {
             const songsCollection =  collection(db, 'songs')
-            const q = query(songsCollection, where('author', '==', auth.currentUser.uid))
+            const q = query(songsCollection, orderBy('updated', 'desc'))
 
             const unsubscribe = onSnapshot(q, (querySnapshot) => {
                 const tempSongs = []
@@ -132,6 +139,29 @@ export const useSongStore = defineStore('songs', {
 
             const songRef = ref(storage, `songs/${originalName}`)
             await deleteObject(songRef)
+        },
+
+        async getSongById(id) {
+            const docRef = doc(db, 'songs', id);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const commentsStore = useCommentStore()
+                commentsStore.getComments(id)
+
+                return {
+                    ...docSnap.data()
+                }
+            } else {
+                return false
+            }
+        },
+
+        changeSongCommentsCount(songId, count) {
+            const songDocument = doc(db, 'songs', songId)
+            updateDoc(songDocument, {
+                commentsCount: count
+            })
         }
     }
 });

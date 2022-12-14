@@ -3,7 +3,8 @@
     <div
         class="absolute inset-0 w-full h-full bg-contain introduction-bg"
         style="background-image: url('header.png')"
-    ></div>
+    />
+
     <div class="container mx-auto">
       <div class="text-white main-header-content">
         <h1 class="font-bold text-5xl mb-5">Listen to Great Music!</h1>
@@ -21,12 +22,19 @@
         src="introduction-music.png"
     />
   </section>
+
+  <SongsList />
 </template>
 
 <script>
+import SongsList from '@/components/SongsList.vue';
 
 export default {
-  name: 'Main'
+  name: 'Main',
+  components: {
+    SongsList
+  }
+
 }
 </script>
 

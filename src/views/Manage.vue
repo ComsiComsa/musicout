@@ -17,7 +17,7 @@
 
           <div class="p-6">
             <div
-                v-for="song in songStore.songs" :key="song.id"
+                v-for="song in songStore.getUserSongs" :key="song.id"
                 class="border border-gray-200 p-3 mb-4 rounded"
             >
               <template v-if="song.editable">
