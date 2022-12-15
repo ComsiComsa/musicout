@@ -112,6 +112,14 @@
         >
           Manage
         </router-link>
+
+        <router-link
+            to="/profile"
+            class="hover:bg-gray-700 hover:text-white text-gray-300 block px-3 py-2 rounded-md text-base font-medium"
+            :class="{ 'bg-gray-900 text-white hover:bg-gray-900 hover:text-orange-600' : $route.path === '/profile'}"
+        >
+          Profile
+        </router-link>
       </div>
     </div>
   </nav>

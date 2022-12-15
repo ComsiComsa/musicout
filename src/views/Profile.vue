@@ -1,5 +1,6 @@
 <template>
-  <section class="container mx-auto mt-6">
+  <main>
+    <section class="container mx-auto mt-6">
     <div class="mt-10 sm:mt-0">
       <div>
         <div class="mt-5 md:col-span-2 md:mt-0">
@@ -63,6 +64,7 @@
       </div>
     </div>
   </section>
+  </main>
 </template>
 
 <script>

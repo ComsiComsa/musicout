@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { auth, db } from '@/includes/firebase';
-import { collection, addDoc, query, where, onSnapshot } from 'firebase/firestore';
+import { collection, addDoc, query, where, onSnapshot, orderBy } from 'firebase/firestore';
 import { useSongStore } from '@/stores/songs';
 
 let unsubscribe

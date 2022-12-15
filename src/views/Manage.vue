@@ -1,6 +1,6 @@
 <template>
-  <!-- Main Content -->
-  <section class="container mx-auto mt-6">
+  <main>
+    <section class="container mx-auto mt-6">
     <div class="md:grid md:grid-cols-3 md:gap-4">
       <Upload ref="upload" />
 
@@ -89,6 +89,7 @@
       </div>
     </div>
   </section>
+  </main>
 </template>
 
 <script>
