@@ -20,7 +20,7 @@
 
       <img
           class="relative block mx-auto my-20 w-auto max-w-full"
-          src="introduction-music.png"
+          src="/introduction-music.png"
       />
     </section>
 

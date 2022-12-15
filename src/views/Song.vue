@@ -3,7 +3,7 @@
     <section class="w-full mb-8 py-14 text-center text-white relative">
       <div
           class="absolute inset-0 w-full h-full box-border bg-contain music-bg"
-          style="background-image: url(/song-header.png)"
+          style="background-image: url('/song-header.png')"
       />
 
       <div class="container mx-auto flex items-center" v-if="song">
