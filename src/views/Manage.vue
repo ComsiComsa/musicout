@@ -9,7 +9,7 @@
             class="bg-white rounded border border-gray-200 relative flex flex-col"
         >
           <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
-            <span class="card-title">My Songs</span>
+            <span class="card-title">{{ $t('ManageView.MySongs') }}</span>
             <i
                 class="fa fa-compact-disc float-right text-green-400 text-2xl"
             ></i>
@@ -27,7 +27,7 @@
                   @submit="onSubmit"
                 >
                   <div class="mb-3">
-                    <label class="inline-block mb-2" for="modifiedName">Song Title</label>
+                    <label class="inline-block mb-2" for="modifiedName">{{ $t('ManageView.SongTitle') }}</label>
                     <vee-field
                         name="modifiedName"
                         type="text"
@@ -38,7 +38,7 @@
                   </div>
 
                   <div class="mb-3">
-                    <label class="inline-block mb-2" for="genre">Genre</label>
+                    <label class="inline-block mb-2" for="genre">{{ $t('Global.Genre') }}</label>
                     <vee-field
                         name="genre"
                         type="text"
@@ -50,9 +50,9 @@
 
                   <button
                       type="submit"
-                      class="py-1.5 px-3 rounded text-white bg-green-600"
+                      class="mr-3 py-1.5 px-3 rounded text-white bg-green-600"
                   >
-                    Save
+                    {{ $t('Global.Save') }}
                   </button>
 
                   <button
@@ -60,7 +60,7 @@
                       class="py-1.5 px-3 rounded text-white bg-gray-600"
                       @click.prevent.stop="songStore.openEditPopup(song)"
                   >
-                    Go Back
+                    {{ $t('Global.GoBack') }}
                   </button>
                 </vee-form>
               </template>

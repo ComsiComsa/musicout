@@ -5,7 +5,9 @@ import { onAuthStateChanged } from 'firebase/auth';
 
 import App from './App.vue';
 import router from './router';
+import vIcon from './directives/vIcon';
 
+import i18n from './includes/i18n.js';
 import VeeValidatePlugin from './includes/validation.js';
 import { auth } from './includes/firebase.js';
 
@@ -26,6 +28,8 @@ onAuthStateChanged(auth, () => {
             .use(pinia)
             .use(router)
             .use(VeeValidatePlugin)
+            .use(i18n)
+            .directive('icon', vIcon)
             .mount('#app');
     }
 })

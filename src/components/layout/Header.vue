@@ -9,8 +9,6 @@
               class="inline-flex
               items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
           >
-            <span class="sr-only">Open main menu</span>
-
             <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
@@ -33,7 +31,7 @@
                   class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   :class="{ 'bg-gray-900 text-white' : $route.path === '/main'}"
               >
-                Main
+                {{ $t('Pages.Main') }}
               </router-link>
 
               <router-link
@@ -41,7 +39,7 @@
                   class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   :class="{ 'bg-gray-900 text-white' : $route.path === '/manage'}"
               >
-                Manage
+                {{ $t('Pages.Manage') }}
               </router-link>
 
               <router-link
@@ -49,7 +47,7 @@
                   class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   :class="{ 'bg-gray-900 text-white' : $route.path === '/profile'}"
               >
-                Profile
+                {{ $t('Pages.Profile') }}
               </router-link>
             </div>
           </div>
@@ -63,7 +61,6 @@
                   class="flex rounded-full bg-gray-800 text-sm focus:outline-none"
                   @click.prevent="userDropdownVisible = !userDropdownVisible"
               >
-                <span class="sr-only">Open user menu</span>
                 <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
               </button>
             </div>
@@ -73,18 +70,25 @@
                 :class="{ 'hidden': !userDropdownVisible }"
             >
               <a
-                  href="#"
+                  @click.prevent="$i18n.locale = $i18n.locale === 'en' ? 'ru' : 'en'"
                   class="block px-4 py-2 text-sm text-gray-700"
               >
-                Your Profile
+                {{ $i18n.locale === 'en' ? 'English' : 'Русский' }}
               </a>
+
+              <router-link
+                  to="/profile"
+                  class="block px-4 py-2 text-sm text-gray-700"
+              >
+                {{ $t('Global.YourProfile') }}
+              </router-link>
 
               <a
                   href="#"
                   @click.prevent="logout"
                   class="block px-4 py-2 text-sm text-gray-700"
               >
-                Sign out
+                {{ $t('Global.SignOut') }}
               </a>
             </div>
           </div>
@@ -102,7 +106,7 @@
             class="hover:bg-gray-700 hover:text-white text-gray-300 block px-3 py-2 rounded-md text-base font-medium"
             :class="{ 'bg-gray-900 text-white hover:bg-gray-900 hover:text-orange-600' : $route.path === '/main'}"
         >
-          Main
+          {{ $t('Pages.Main') }}
         </router-link>
 
         <router-link
@@ -110,7 +114,7 @@
             class="hover:bg-gray-700 hover:text-white text-gray-300 block px-3 py-2 rounded-md text-base font-medium"
             :class="{ 'bg-gray-900 text-white hover:bg-gray-900 hover:text-orange-600' : $route.path === '/manage'}"
         >
-          Manage
+          {{ $t('Pages.Manage') }}
         </router-link>
 
         <router-link
@@ -118,7 +122,7 @@
             class="hover:bg-gray-700 hover:text-white text-gray-300 block px-3 py-2 rounded-md text-base font-medium"
             :class="{ 'bg-gray-900 text-white hover:bg-gray-900 hover:text-orange-600' : $route.path === '/profile'}"
         >
-          Profile
+          {{ $t('Pages.Profile') }}
         </router-link>
       </div>
     </div>
@@ -126,7 +130,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useUserStore } from '@/stores/user';
 
 export default {
@@ -137,6 +141,7 @@ export default {
      */
 
     const userStore = useUserStore()
+
     const userDropdownVisible = ref(false)
     const mobileMenuVisible = ref(false)
 

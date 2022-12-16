@@ -30,7 +30,7 @@
           class="bg-white rounded border border-gray-200 relative flex flex-col"
       >
         <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
-          <span class="card-title">Comments ({{ commentStore.comments.length }})</span>
+          <span class="card-title">{{ $tc('SongView.CommentCount', song.commentsCount, { count: song.commentsCount }) }}</span>
           <i class="fa fa-comments float-right text-green-400 text-2xl"></i>
         </div>
 
@@ -43,7 +43,7 @@
                 as="textarea"
                 name="comment"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-                placeholder="Your comment here..."
+                :placeholder="$t('SongView.CommentPlaceholder')"
             />
             <ErrorMessage name="comment" class="text-red-600" />
 
@@ -52,7 +52,7 @@
                 class="py-1.5 px-3 mt-4 rounded text-white bg-green-600 block"
                 :disabled="submitting"
             >
-              <i class="fas fa-spinner fa-spin" v-if="submitting" /> Submit
+              <i class="fas fa-spinner fa-spin" v-if="submitting" /> {{ $t('Global.Submit') }}
             </button>
           </vee-form>
         </div>

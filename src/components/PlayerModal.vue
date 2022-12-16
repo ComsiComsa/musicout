@@ -2,7 +2,7 @@
   <div class="fixed bottom-0 left-0 bg-white px-4 py-2 w-full">
     <div class="text-center">
       <span class="song-title font-bold">{{ playerStore.currentSong.modifiedName }}</span> by
-      <span class="song-artist">Artist</span>
+      <span class="song-artist">{{ $t('Global.Artist') }}</span>
     </div>
 
     <div class="flex flex-nowrap gap-4 items-center">

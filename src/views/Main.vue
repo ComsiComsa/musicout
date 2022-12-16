@@ -8,18 +8,13 @@
 
       <div class="container mx-auto">
         <div class="text-white main-header-content">
-          <h1 class="font-bold text-5xl mb-5">Listen to Great Music!</h1>
-          <p class="w-full md:w-8/12 mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            et dolor mollis, congue augue non, venenatis elit. Nunc justo eros,
-            suscipit ac aliquet imperdiet, venenatis et sapien. Duis sed magna
-            pulvinar, fringilla lorem eget, ullamcorper urna.
-          </p>
+          <h1 class="font-bold text-5xl mb-5">{{ $t('MainView.Listen') }}</h1>
+          <p class="w-full md:w-8/12 mx-auto px-3">{{ $t('MainView.Description') }}</p>
         </div>
       </div>
 
       <img
-          class="relative block mx-auto my-20 w-auto max-w-full"
+          class="relative block mx-auto px-10 my-20 w-auto max-w-full max-sm:hidden"
           src="/introduction-music.png"
       />
     </section>

@@ -1,0 +1,39 @@
+{
+  "Global": {
+    "Submit": "Submit",
+    "YourProfile": "Your profile",
+    "SignOut": "Sign out",
+    "Name": "Name",
+    "Email": "Email",
+    "Age": "Age",
+    "Save": "Save",
+    "Genre": "Genre",
+    "GoBack": "Go back",
+    "Upload": "Upload",
+    "Songs": "Песни",
+    "Artist": "Artist"
+  },
+  "Pages": {
+    "Main": "Main",
+    "Manage": "Manage",
+    "Profile": "Profile"
+  },
+  "ProfileView": {
+    "LastUpdate": "Last update:"
+  },
+  "ManageView": {
+    "MySongs": "My songs",
+    "SongTitle": "Song title"
+  },
+  "MainView": {
+    "Listen": "Listen to great music!",
+    "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phaselluset dolor mollis, congue augue non, venenatis elit. Nunc justo eros, suscipit ac aliquet imperdiet, venenatis et sapien. Duis sed magna pulvinar, fringilla lorem eget, ullamcorper urna."
+  },
+  "SongView": {
+    "CommentCount": "No comments | 1 comment | {count} comments",
+    "CommentPlaceholder": "Your comment here ..."
+  },
+  "UploadComponent": {
+    "DropYourFilesHere": "Drop your files here"
+  }
+}

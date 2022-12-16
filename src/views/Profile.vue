@@ -12,7 +12,7 @@
               <div class="bg-white px-4 py-5 sm:p-6">
                 <div class="grid grid-cols-6 gap-6">
                   <div class="col-span-6 sm:col-span-3">
-                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <label for="name" class="block text-sm font-medium text-gray-700">{{ $t('Global.Name') }}</label>
                     <vee-field
                         v-model="user.name"
                         :disabled="submitting || loadingUser"
@@ -24,7 +24,7 @@
                   </div>
 
                   <div class="col-span-6 sm:col-span-3">
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <label for="email" class="block text-sm font-medium text-gray-700">{{ $t('Global.Email') }}</label>
                     <vee-field
                         v-model="user.email"
                         type="email"
@@ -36,7 +36,7 @@
                   </div>
 
                   <div class="col-span-6 sm:col-span-3">
-                    <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
+                    <label for="age" class="block text-sm font-medium text-gray-700">{{ $t('Global.Age') }}</label>
                     <vee-field
                         v-model="user.age"
                         :disabled="submitting || loadingUser"
@@ -49,13 +49,13 @@
                 </div>
               </div>
               <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-                <span class="mr-3">Last update: {{ new Date(user.updated).toLocaleString() }}</span>
+                <span class="mr-3">{{ $t('ProfileView.LastUpdate') }}: {{ new Date(user.updated).toLocaleString() }}</span>
                 <button
                     type="submit"
                     :disabled="submitting"
                     class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
-                  <i class="fas fa-spinner fa-spin mr-2 my-auto" v-if="submitting" /> Save
+                  <i class="fas fa-spinner fa-spin mr-2 my-auto" v-if="submitting" /> {{ $t('Global.Save') }}
                 </button>
               </div>
             </div>
