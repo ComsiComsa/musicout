@@ -146,7 +146,6 @@ export default {
             submitAlert.message = 'Success! Your account has been created.'
 
             setTimeout(() => {
-              console.log('BIM BIM')
               router.push('/login')
             }, 500)
           })

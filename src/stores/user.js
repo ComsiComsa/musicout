@@ -18,8 +18,6 @@ export const useUserStore = defineStore('user', {
             const router = useRouter()
 
             onAuthStateChanged(auth, (user) => {
-                console.log('Router: ', router.currentRoute)
-
                 if (user) {
                     this.user = user
                 } else {

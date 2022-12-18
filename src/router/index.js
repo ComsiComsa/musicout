@@ -64,7 +64,6 @@ router.beforeEach(async (to, from) => {
   }
 
   if (userStore.user.uid && !to.meta.requiredAuth) {
-    console.log('AA AA AA')
     return { name: 'main' }
   }
 

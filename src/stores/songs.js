@@ -54,6 +54,18 @@ export const useSongStore = defineStore('songs', {
         },
 
         upload(file) {
+            if (!navigator.onLine) {
+                this.uploads.push({
+                    task: {},
+                    currentProgress: 100,
+                    name: file.name,
+                    icon: 'fas fa-times',
+                    bgClass: 'bg-red-400',
+                    textClass: 'text-red-400'
+                })
+                return
+            }
+
             const songRef = ref(storage, `songs/${file.name}`);
             const task = uploadBytesResumable(songRef, file)
 
@@ -91,7 +103,6 @@ export const useSongStore = defineStore('songs', {
                         })
                         .catch((error) => {
                             console.log('Error by loading => ', error)
-                            console.log(task.snapshot.ref)
                         })
 
                     const songDocument = collection(db, 'songs')
